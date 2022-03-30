@@ -11,14 +11,29 @@
 body {
   display: grid;
   grid-template-rows: minmax(5rem, auto) 1fr min-content;
-  grid-template-areas: 
-  'h'
-  'm'
-  'f';
+  grid-template-areas:
+    'h'
+    'm'
+    'f';
   color: #eee;
   font-family: Helvetica, Arial, sans-serif;
-	box-sizing: border-box;
-	min-height: 100vh;
-	background: linear-gradient(to top left, rgb(194, 117, 130), crimson);
+  box-sizing: border-box;
+  min-height: 100vh;
+  background: linear-gradient(to top left, rgb(194, 117, 130), rgb(116, 26, 44));
   font-size: 1.6rem;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

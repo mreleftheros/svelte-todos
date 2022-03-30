@@ -5,8 +5,10 @@
 
 </script>
 
-<Header />
-<Footer />
+<Router>
+	<Header />
+	<Footer />
+</Router>
 
 <style>
 

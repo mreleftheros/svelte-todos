@@ -13,7 +13,6 @@
 	<Main>
 		<Route path='/' component={Home} />
 		<Route path='/about' component={About} />
-		&#127919;
 	</Main>
 	<Footer />
 </Router>

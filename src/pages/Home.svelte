@@ -20,7 +20,7 @@
 <style>
   .title {
     text-align: center;
-    margin: 1rem auto;
+    margin: 1rem auto 2rem;
     font-size: 3rem;
     letter-spacing: .1rem;
     font-weight: bolder;

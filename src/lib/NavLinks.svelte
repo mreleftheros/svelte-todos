@@ -6,11 +6,11 @@
   <li class="link">
     <span class="link-text flex-center">New</span>
   </li>
-  <Link to='/about'>
-    <li class="link">
+  <li class="link">
+      <Link to='/about'>
       <span class="link-text flex-center">About</span>
-    </li>
-  </Link>
+    </Link>
+  </li>
 </ul>
 
 <style>
@@ -30,6 +30,7 @@
     cursor: pointer;
     user-select: none;
     transition: opacity .15s ease;
+    font-size: 2rem;
   }
 
   .link-text:hover {

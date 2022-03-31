@@ -6,7 +6,8 @@
 <nav class="nav">
   <div class="logo">
     <Link to='/'>
-      <h2 class="logo-title flex-center">Todos</h2>
+      <h2 class="logo-title flex-center"> 	
+        &#127968;</h2>
     </Link>
   </div>
   <NavLinks />

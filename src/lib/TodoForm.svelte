@@ -1,0 +1,105 @@
+<script>
+  export let edit = null;
+  import { onMount } from "svelte";
+  import { createEventDispatcher } from 'svelte';
+
+  let text = '';
+  let inputRef;
+  
+  const dispatch = createEventDispatcher();
+
+  onMount(() => inputRef.select());
+
+  const handleSubmit = () => {
+    if (!text) return;
+
+    if (edit !== null) return dispatch('edit', { id: edit, text })
+    else if (edit === null) return dispatch('add', {text})
+  }
+</script>
+
+<div class="wrapper">
+  <h2 class="title flex-center">
+    {#if edit !== null}
+      Edit Todo
+    {:else}
+      Add Todo
+    {/if}
+  </h2>
+  <form class="todoForm" on:submit|preventDefault={handleSubmit}> 
+    <label class="label" for="text">Todo</label>
+    <input class="input" type="text" bind:value={text} bind:this={inputRef} placeholder="Enter todo...">
+    <button class="btn" type="submit">
+      {#if edit !== null}
+        Edit
+      {:else}
+        Add
+      {/if}
+    </button>
+  </form>
+</div>
+
+<style>
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+
+  .todoForm {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 35rem;
+    padding: .5rem;
+  }
+  
+  .title {
+    text-align: center;
+    user-select: none;
+    letter-spacing: .1rem;
+    font-size: 3rem;
+    font-weight: 100;
+    flex-basis: 5rem;
+  }
+
+  .label {
+    display: block;
+    font-size: 3rem;
+    font-weight: 900;
+  }
+
+  .input {
+    display: block;
+    margin: auto;
+    outline: none;
+    padding: .5rem 1.5rem;
+    border-radius: 1rem;
+    border: none;
+    font-size: 2rem;
+    text-align: center;
+    margin: 1rem 0;
+  }
+
+  .input:focus {
+    background-color: #aaa;
+  }
+
+  .btn {
+    display: block;
+    margin: auto auto 2rem;
+    background-color: rgb(116, 26, 44);
+    color: #eee;
+    border: 0;
+    padding: .5rem 3rem;
+    border-radius: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform .15s ease;
+  }
+
+  .btn:hover {
+    transform: rotate(5deg);
+  }
+</style>

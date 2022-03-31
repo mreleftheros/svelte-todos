@@ -13,7 +13,9 @@
     return dispatch('check', {
       id
     })
-  }
+  };
+
+
 </script>
 
 <li class="item">
@@ -45,10 +47,20 @@
 
   .trash {
     color: crimson;
+    transition: transform .15s ease;
+  }
+
+  .trash:hover {
+    transform: scale(0.95);
   }
 
   .edit {
-    color: gray;
+    color: #aaa;
+    transition: transform .3s linear;
+  }
+
+  .edit:hover {
+    transform: rotate(90deg);
   }
 
   .line {

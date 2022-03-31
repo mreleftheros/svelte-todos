@@ -1,11 +1,19 @@
 <script>
-  export let text, done;
+  export let id, text, done;
+  import { createEventDispatcher } from 'svelte'
   
+  const dispatch = createEventDispatcher();
   const icons = {
     check: '🗸',
     trash: '✗',
     edit: '⚙'
   };
+
+  const handleCheckClick = () => {
+    return dispatch('check', {
+      id
+    })
+  }
 </script>
 
 <li class="item">
@@ -14,7 +22,7 @@
     <h3 class="text" class:line={done}>{text}</h3>
   </div>
   <div class="tools">
-    <button class="btn" class:check={done}>{icons.check}</button>
+    <button class="btn" on:click={handleCheckClick} class:check={done}>{icons.check}</button>
     <button class="btn edit">{icons.edit}</button>
     <button class="btn trash">{icons.trash}</button>
   </div>

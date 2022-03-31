@@ -6,12 +6,20 @@
     {id: 1, text: 'Hello World 1', done: true},
     {id: 2, text: 'Hello World 2', done: false},
   ];
+
+  const toggleCheck = e => {
+    const {id} = e.detail;
+    const todo = todos.find(t => t.id === id);
+    todo.done = !todo.done;
+
+    return todos=todos;
+  }
 </script>
 
 <section>
   <h2 class="title">My Todos</h2>
   {#if todos.length > 0}
-    <Todos {todos} />
+    <Todos {todos} on:check={toggleCheck} />
   {:else}
     <p>No more todos...</p>
   {/if}

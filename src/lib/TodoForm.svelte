@@ -59,7 +59,7 @@
     text-align: center;
     user-select: none;
     letter-spacing: .1rem;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 100;
     flex-basis: 5rem;
   }

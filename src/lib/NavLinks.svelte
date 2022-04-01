@@ -4,7 +4,7 @@
 
 <ul class="links">
   <li class="link">
-    <span class="link-text flex-center">New</span>
+    <span class="link-text flex-center">Create</span>
   </li>
   <li class="link">
       <Link to='/about'>

@@ -1,4 +1,5 @@
 export const getTodosFromStorage = () => {
+  console.log(localStorage.getItem('todos'))
   return JSON.parse(localStorage.getItem('todos')) || [];
 };
 

@@ -1,6 +1,6 @@
 <script>
 	import { Router, Route } from 'svelte-routing';
-	import { getTodosFromStorage } from './storage';
+	import { getTodosFromStorage, setTodosToStorage } from './storage';
 	import { onMount } from 'svelte';
 	import Header from './layout/Header.svelte';
 	import Main from './layout/Main.svelte';
@@ -29,12 +29,14 @@
     const todo = todos.find(t => t.id === id);
     todo.done = !todo.done;
 
-    return todos=todos;
+    todos=todos;
+		return setTodosToStorage(todos);
   };
 
 	const addTodo = ({detail: {text}}) => {
     todos = [{text, id: id++, done: false}, ...todos];
 
+		setTodosToStorage(todos);
     return closeModal();
   };
 
@@ -55,11 +57,14 @@
 		todo.text = text;
 
 		todos = todos;
+
+		setTodosToStorage(todos);
 		return closeModal();
 	};
 
 	const deleteTodo = ({detail: {id}}) => {
-		return todos = todos.filter(t => t.id !== id);
+		todos = todos.filter(t => t.id !== id);
+		return setTodosToStorage(todos);
 	};
 </script>
 

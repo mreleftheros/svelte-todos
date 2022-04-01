@@ -3,7 +3,7 @@
 </script>
 
 <header class="header">
-  <Nav />
+  <Nav on:openAdd />
 </header>
 
 <style>

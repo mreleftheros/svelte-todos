@@ -10,7 +10,7 @@
         &#127968;</h2>
     </Link>
   </div>
-  <NavLinks />
+  <NavLinks on:openAdd />
 </nav>
 
 <style>

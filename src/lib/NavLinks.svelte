@@ -1,9 +1,14 @@
 <script>
   import { Link } from 'svelte-routing';
+  import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
+
+  const handleClick = () => dispatch('openAdd');
 </script>
 
 <ul class="links">
-  <li class="link">
+  <li class="link" on:click={handleClick}>
     <span class="link-text flex-center">Create</span>
   </li>
   <li class="link">

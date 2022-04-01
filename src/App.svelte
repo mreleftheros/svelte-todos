@@ -66,7 +66,7 @@
 </script>
 
 <Router>
-	<Header />
+	<Header on:openAdd={openAddModal} />
 	<Main>
 		<Route path='/'>
 			<Home {todos} on:check={toggleCheck} on:edit={editTodo} on:set={setTodo} on:trash={deleteTodo} on:add={addTodo} on:close={closeModal} {...modal} />

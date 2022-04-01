@@ -27,7 +27,8 @@
   .logo-title {
     height: 100%;
     text-align: center;
-    font-size: 3rem;
+    font-size: 6rem;
+    align-items: center;
     font-weight: 900;
     letter-spacing: .1rem;
     transition: transform .15s ease-in-out;

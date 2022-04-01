@@ -1,5 +1,6 @@
 <script>
 	import { Router, Route } from 'svelte-routing';
+	import { getTodosFromStorage } from './storage';
 	import { onMount } from 'svelte';
 	import Header from './layout/Header.svelte';
 	import Main from './layout/Main.svelte';
@@ -7,11 +8,7 @@
 	import Home from './pages/Home.svelte';
 	import About from './pages/About.svelte';
 
-	let todos = [
-    {id: 0, text: 'Hello World', done: false},
-    {id: 1, text: 'Hello World 1', done: true},
-    {id: 2, text: 'Hello World 2', done: false},
-  ];
+	let todos = [];
 	let id;
 	let modal = {
     show: false,
@@ -20,6 +17,7 @@
   };
 
   onMount(() => {
+		todos = getTodosFromStorage();
     id = todos.length;
   })
 

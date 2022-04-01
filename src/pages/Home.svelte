@@ -10,7 +10,7 @@
   {#if todos.length > 0}
     <Todos {todos} on:check on:edit on:trash />
   {:else}
-    <p>No more todos...</p>
+    <p class="para">There are currently no todos . . .</p>
   {/if}
   {#if show}
     <Modal on:close>
@@ -20,6 +20,12 @@
 </section>
 
 <style>
+  .para {
+    font-size: 2.5rem;
+    text-align: center;
+    text-shadow: 1px 2px 0 #333;
+  }
+
   .title {
     text-align: center;
     margin: 1rem auto 2rem;
@@ -27,5 +33,6 @@
     letter-spacing: .1rem;
     font-weight: bolder;
     user-select: none;
+    text-shadow: 1px 2px 3px #333;
   }
 </style>

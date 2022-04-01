@@ -58,8 +58,9 @@
 
   .edit {
     color: #aaa;
-    transition: transform .3s linear;
-    transform-origin: center;
+    transition: transform .3s ease;
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
   }
 
   .edit:hover {

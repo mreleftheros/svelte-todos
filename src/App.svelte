@@ -42,9 +42,15 @@
 
   const editTodo = ({detail: {id, text}}) => {
 		modal.edit = id;
-		modal.show = true;
     modal.editText = text;
+		return modal.show = true;
   };
+
+	const openAddModal = () => {
+		modal.edit = null;
+		modal.editText = '';
+		return modal.show = true;
+	}
 
 	const setTodo = ({detail: {id, text}}) => {
 		const todo =  todos.find(t => t.id === id);
@@ -53,13 +59,17 @@
 		todos = todos;
 		return closeModal();
 	};
+
+	const deleteTodo = ({detail: {id}}) => {
+		return todos = todos.filter(t => t.id !== id);
+	};
 </script>
 
 <Router>
 	<Header />
 	<Main>
 		<Route path='/'>
-			<Home {todos} on:check={toggleCheck} on:edit={editTodo} on:set={setTodo} on:add={addTodo} on:close={closeModal} {...modal} />
+			<Home {todos} on:check={toggleCheck} on:edit={editTodo} on:set={setTodo} on:trash={deleteTodo} on:add={addTodo} on:close={closeModal} {...modal} />
 		</Route>
 		<Route path='/about' component={About} />
 	</Main>

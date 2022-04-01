@@ -1,5 +1,5 @@
 <script>
-  export let todos = [], edit = null, show = false;
+  export let todos = [], edit = null, show = false, editText = '';
   import Todos from '../lib/Todos.svelte';
   import Modal from '../lib/Modal.svelte';
   import TodoForm from '../lib/TodoForm.svelte';
@@ -8,13 +8,13 @@
 <section>
   <h2 class="title">My Todos</h2>
   {#if todos.length > 0}
-    <Todos {todos} on:check />
+    <Todos {todos} on:check on:edit on:trash />
   {:else}
     <p>No more todos...</p>
   {/if}
   {#if show}
     <Modal on:close>
-      <TodoForm {edit} on:add on:edit/>
+      <TodoForm {edit} {editText} on:add on:set/>
     </Modal>
   {/if}
 </section>

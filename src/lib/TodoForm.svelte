@@ -1,9 +1,9 @@
 <script>
-  export let edit = null;
+  export let edit = null, editText = '';
   import { onMount } from "svelte";
   import { createEventDispatcher } from 'svelte';
 
-  let text = '';
+  let text = editText || '';
   let inputRef;
   
   const dispatch = createEventDispatcher();
@@ -13,8 +13,8 @@
   const handleSubmit = () => {
     if (!text) return;
 
-    if (edit !== null) return dispatch('edit', { id: edit, text })
-    else if (edit === null) return dispatch('add', {text})
+    if (edit !== null) return dispatch('set', { id: edit, text })
+    else if (edit === null) return dispatch('add', {text});
   }
 </script>
 

@@ -14,8 +14,9 @@
   ];
 	let id;
 	let modal = {
-    show: true,
-    edit: null
+    show: false,
+    edit: null,
+		editText: ''
   };
 
   onMount(() => {
@@ -37,21 +38,28 @@
     todos = [{text, id: id++, done: false}, ...todos];
 
     return closeModal();
-  }
+  };
 
   const editTodo = ({detail: {id, text}}) => {
-    console.log(id, text);
+		modal.edit = id;
+		modal.show = true;
+    modal.editText = text;
+  };
 
-    return closeModal();
-  }
+	const setTodo = ({detail: {id, text}}) => {
+		const todo =  todos.find(t => t.id === id);
+		todo.text = text;
 
+		todos = todos;
+		return closeModal();
+	};
 </script>
 
 <Router>
 	<Header />
 	<Main>
 		<Route path='/'>
-			<Home {todos} on:check={toggleCheck} on:edit={editTodo} on:add={addTodo} on:close={closeModal} {...modal} />
+			<Home {todos} on:check={toggleCheck} on:edit={editTodo} on:set={setTodo} on:add={addTodo} on:close={closeModal} {...modal} />
 		</Route>
 		<Route path='/about' component={About} />
 	</Main>

@@ -9,10 +9,12 @@
     edit: '⚙'
   };
 
-  const handleCheckClick = () => {
-    return dispatch('check', {
-      id
-    })
+  const handleClick = ({target: {classList}}) => {
+    let action = classList.contains('edit') ? 'edit' : classList.contains('trash') ? 'trash' : 'check';
+    const payload = {id};
+    if (action === 'edit') payload.text = text;
+
+    return dispatch(action, payload);
   };
 
 
@@ -24,9 +26,9 @@
     <h3 class="text" class:line={done}>{text}</h3>
   </div>
   <div class="tools">
-    <button class="btn" on:click={handleCheckClick} class:check={done}>{icons.check}</button>
-    <button class="btn edit">{icons.edit}</button>
-    <button class="btn trash">{icons.trash}</button>
+    <button class="btn" on:click={handleClick} class:check={done}>{icons.check}</button>
+    <button class="btn edit" on:click={handleClick}>{icons.edit}</button>
+    <button class="btn trash" on:click={handleClick}>{icons.trash}</button>
   </div>
 </li>
 

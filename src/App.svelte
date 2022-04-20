@@ -9,7 +9,7 @@
 	import About from './pages/About.svelte';
 
 	let todos = [];
-	let id;
+	$: id = todos.length > 0 ? Math.max(...todos.map(t => t.id)) + 1 : 0;
 	let modal = {
     show: false,
     edit: null,
@@ -34,7 +34,7 @@
   };
 
 	const addTodo = ({detail: {text}}) => {
-    todos = [{text, id: id++, done: false}, ...todos];
+    todos = [{text, id, done: false}, ...todos];
 
 		setTodosToStorage(todos);
     return closeModal();

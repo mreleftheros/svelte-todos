@@ -1,11 +1,11 @@
 <script>
+  export let todos = [], onToggle, onDelete, onEditModal;
   import Todo from './Todo.svelte';
-  export let todos = [];
 </script>
 
 <ul>
   {#each todos as todo(todo.id)}
-    <Todo {...todo} on:check on:edit on:trash />
+    <Todo {...todo} {onToggle} {onDelete} {onEditModal} />
   {:else}
     <p class="para">There are currently no todos . . .</p>
   {/each}

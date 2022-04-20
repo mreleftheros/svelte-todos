@@ -1,8 +1,6 @@
 <script>
-  export let id, text, done;
-  import { createEventDispatcher } from 'svelte';
-  
-  const dispatch = createEventDispatcher();
+  export let id, text, done, onToggle, onDelete, onEditModal;
+
   const icons = {
     check: '🗸',
     trash: '✗',
@@ -11,10 +9,15 @@
 
   const handleClick = ({target: {classList}}) => {
     let action = classList.contains('edit') ? 'edit' : classList.contains('trash') ? 'trash' : 'check';
-    const payload = {id};
-    if (action === 'edit') payload.text = text;
 
-    return dispatch(action, payload);
+    switch (action) {
+      case 'check':
+        return onToggle(id);
+      case 'trash':
+        return onDelete(id);
+      case 'edit':
+        return onEditModal(id, text);
+    }
   };
 </script>
 

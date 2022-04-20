@@ -1,14 +1,10 @@
 <script>
+  export let onAddModal;
   import { Link } from 'svelte-routing';
-  import { createEventDispatcher } from 'svelte';
-
-  const dispatch = createEventDispatcher();
-
-  const handleClick = () => dispatch('openAdd');
 </script>
 
 <ul class="links">
-  <li class="link" on:click={handleClick}>
+  <li class="link" on:click={onAddModal}>
     <span class="link-text flex-center">Create</span>
   </li>
   <li class="link">

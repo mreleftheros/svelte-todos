@@ -1,17 +1,11 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
-
-  const dispatch = createEventDispatcher();
-
-  const handleClick = () => {
-    return dispatch('close');
-  }
+  export let onCloseModal;
 </script>
 
-<div class="flex-center modal-box" on:click|self={handleClick}>
+<div class="flex-center modal-box" on:click|self={onCloseModal}>
   <div class="modal">
     <slot />
-    <button class="exit" on:click={handleClick}>x</button>
+    <button class="exit" on:click={onCloseModal}>x</button>
   </div>
 </div>
 

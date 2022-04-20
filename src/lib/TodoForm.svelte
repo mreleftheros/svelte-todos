@@ -1,38 +1,37 @@
 <script>
-  export let edit = null, editText = '';
+  export let type, text = '', onAdd, onEdit;
   import { onMount } from "svelte";
-  import { createEventDispatcher } from 'svelte';
 
-  let text = editText || '';
   let inputRef;
-  
-  const dispatch = createEventDispatcher();
 
   onMount(() => inputRef.select());
 
   const handleSubmit = () => {
     if (!text) return;
 
-    if (edit !== null) return dispatch('set', { id: edit, text })
-    else if (edit === null) return dispatch('add', {text});
+    if (type === 'edit') {
+      return onEdit(text);
+    } else if (type === 'add') {
+      return onAdd(text);
+    }
   }
 </script>
 
 <div class="wrapper">
   <h2 class="title flex-center">
-    {#if edit !== null}
+    {#if type === 'edit'}
       Edit Todo
-    {:else}
+    {:else if type === 'add'}
       Add Todo
     {/if}
   </h2>
   <form class="todoForm" on:submit|preventDefault={handleSubmit}> 
     <label class="label" for="text">Todo</label>
     <input class="input" type="text" bind:value={text} bind:this={inputRef} placeholder="Enter todo...">
-    <button class="btn" type="submit">
-      {#if edit !== null}
+    <button class="btn" disabled={!text} type="submit">
+      {#if type === 'edit'}
         Edit
-      {:else}
+      {:else if type === 'add'}
         Add
       {/if}
     </button>

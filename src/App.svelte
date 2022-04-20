@@ -1,78 +1,51 @@
 <script>
 	import { Router, Route } from 'svelte-routing';
 	import { getTodosFromStorage, setTodosToStorage } from './storage';
-	import { onMount } from 'svelte';
 	import Header from './layout/Header.svelte';
 	import Main from './layout/Main.svelte';
 	import Footer from './layout/Footer.svelte';
 	import Home from './pages/Home.svelte';
 	import About from './pages/About.svelte';
 
-	let todos = [];
+	let todos = getTodosFromStorage();
 	$: id = todos.length > 0 ? Math.max(...todos.map(t => t.id)) + 1 : 0;
-	let modal = {
-    show: false,
-    edit: null,
-		editText: ''
-  };
+	$: setTodosToStorage(todos);
+	let modal = null;
 
-  onMount(() => {
-		todos = getTodosFromStorage();
-    id = todos.length;
-  })
+	const openAddModal = () => modal = {type: 'add'};
 
-	const closeModal = () => {
-    return modal.show = false;
-  };
+	const openEditModal = (id, text) => modal = {type: 'edit', id, text};
 
-	const toggleCheck = ({detail: {id}}) => {
+	const closeModal = () => modal = null;
+
+	const toggleDone = (id) => {
     const todo = todos.find(t => t.id === id);
     todo.done = !todo.done;
-
-    todos=todos;
-		return setTodosToStorage(todos);
+    return todos=todos;
   };
 
-	const addTodo = ({detail: {text}}) => {
+	const addTodo = (text) => {
     todos = [{text, id, done: false}, ...todos];
 
-		setTodosToStorage(todos);
     return closeModal();
   };
 
-  const editTodo = ({detail: {id, text}}) => {
-		modal.edit = id;
-    modal.editText = text;
-		return modal.show = true;
-  };
-
-	const openAddModal = () => {
-		modal.edit = null;
-		modal.editText = '';
-		return modal.show = true;
-	}
-
-	const setTodo = ({detail: {id, text}}) => {
-		const todo =  todos.find(t => t.id === id);
+	const editTodo = text => {
+		const todo =  todos.find(t => t.id === modal.id);
 		todo.text = text;
-
 		todos = todos;
 
-		setTodosToStorage(todos);
 		return closeModal();
 	};
 
-	const deleteTodo = ({detail: {id}}) => {
-		todos = todos.filter(t => t.id !== id);
-		return setTodosToStorage(todos);
-	};
+	const deleteTodo = (id) => todos = todos.filter(t => t.id !== id);
 </script>
 
 <Router>
-	<Header on:openAdd={openAddModal} />
+	<Header onAddModal={openAddModal} />
 	<Main>
 		<Route path='/'>
-			<Home {todos} on:check={toggleCheck} on:edit={editTodo} on:set={setTodo} on:trash={deleteTodo} on:add={addTodo} on:close={closeModal} {...modal} />
+			<Home {todos} onToggle={toggleDone} onEditModal={openEditModal} onEdit={editTodo} onDelete={deleteTodo} onAdd={addTodo} onCloseModal={closeModal} {modal} />
 		</Route>
 		<Route path='/about' component={About} />
 	</Main>

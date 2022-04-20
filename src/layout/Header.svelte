@@ -1,9 +1,10 @@
 <script>
+  export let onAddModal;
   import Nav from '../lib/Nav.svelte';
 </script>
 
 <header class="header">
-  <Nav on:openAdd />
+  <Nav {onAddModal} />
 </header>
 
 <style>

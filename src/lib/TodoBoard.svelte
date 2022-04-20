@@ -3,14 +3,14 @@
 
   $: doneTodos = todos.filter(t => t.done).length;
 	$: totalTodos = todos.length;
-  $: allDone = todos.every(t => t.done);
+  $: allDone = doneTodos === totalTodos;
 </script>
 
 <div class="board-box">
   {#if !allDone}
     <p class="board">{doneTodos} out of {totalTodos}</p>
   {:else}
-    <p class="board">Congrats! All {totalTodos} todos are completed!</p>
+    <p class="board">Congrats! All {totalTodos} todos are done!</p>
   {/if}
 </div>
 

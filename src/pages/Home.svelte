@@ -1,5 +1,5 @@
 <script>
-  export let todos = [], edit = null, show = false, editText = '';
+  export let todos = [], modal = null, onEditModal, onCloseModal, onAdd, onEdit, onToggle, onDelete;
   import Todos from '../lib/Todos.svelte';
   import Modal from '../lib/Modal.svelte';
   import TodoForm from '../lib/TodoForm.svelte';
@@ -11,10 +11,10 @@
   {#if todos.length}
     <TodoBoard {todos} />
   {/if}
-  <Todos {todos} on:check on:edit on:trash />
-  {#if show}
-    <Modal on:close>
-      <TodoForm {edit} {editText} on:add on:set/>
+  <Todos {todos} {onToggle} {onDelete} {onEditModal} />
+  {#if modal}
+    <Modal {onCloseModal}>
+      <TodoForm {...modal} {onAdd} {onEdit} />
     </Modal>
   {/if}
 </section>

@@ -1,4 +1,5 @@
 <script>
+  export let onAddModal;
   import { Link } from 'svelte-routing';
   import NavLinks from './NavLinks.svelte';
 </script>
@@ -10,7 +11,7 @@
         &#127968;</h2>
     </Link>
   </div>
-  <NavLinks on:openAdd />
+  <NavLinks {onAddModal} />
 </nav>
 
 <style>

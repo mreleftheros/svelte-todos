@@ -1,6 +1,6 @@
 <script>
   export let id, text, done;
-  import { createEventDispatcher } from 'svelte'
+  import { createEventDispatcher } from 'svelte';
   
   const dispatch = createEventDispatcher();
   const icons = {
@@ -16,8 +16,6 @@
 
     return dispatch(action, payload);
   };
-
-
 </script>
 
 <li class="item">

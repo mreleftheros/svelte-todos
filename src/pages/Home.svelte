@@ -3,15 +3,13 @@
   import Todos from '../lib/Todos.svelte';
   import Modal from '../lib/Modal.svelte';
   import TodoForm from '../lib/TodoForm.svelte';
+  import TodoBoard from '../lib/TodoBoard.svelte';
 </script>
 
 <section>
   <h2 class="title">My Todos</h2>
-  {#if todos.length > 0}
-    <Todos {todos} on:check on:edit on:trash />
-  {:else}
-    <p class="para">There are currently no todos . . .</p>
-  {/if}
+  <TodoBoard {todos} />
+  <Todos {todos} on:check on:edit on:trash />
   {#if show}
     <Modal on:close>
       <TodoForm {edit} {editText} on:add on:set/>
@@ -20,12 +18,6 @@
 </section>
 
 <style>
-  .para {
-    font-size: 2.5rem;
-    text-align: center;
-    text-shadow: 1px 2px 0 #333;
-  }
-
   .title {
     text-align: center;
     margin: 1rem auto 2rem;

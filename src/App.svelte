@@ -8,9 +8,11 @@
 	import About from './pages/About.svelte';
 
 	let todos = getTodosFromStorage();
+	let modal = null;
+	let filter = 'all';
 	$: id = todos.length > 0 ? Math.max(...todos.map(t => t.id)) + 1 : 0;
 	$: setTodosToStorage(todos);
-	let modal = null;
+	$: filteredTodos = filter === 'done' ? todos.filter(t => t.done) : filter === 'undone' ? todos.filter(t => !t.done) : null;
 
 	const openAddModal = () => modal = {type: 'add'};
 
@@ -39,19 +41,17 @@
 	};
 
 	const deleteTodo = (id) => todos = todos.filter(t => t.id !== id);
+
+	const setFilter = newFilter => filter = newFilter;
 </script>
 
 <Router>
 	<Header onAddModal={openAddModal} />
 	<Main>
 		<Route path='/'>
-			<Home {todos} onToggle={toggleDone} onEditModal={openEditModal} onEdit={editTodo} onDelete={deleteTodo} onAdd={addTodo} onCloseModal={closeModal} {modal} />
+			<Home todos={filteredTodos || todos} onToggle={toggleDone} onEditModal={openEditModal} onEdit={editTodo} onDelete={deleteTodo} onAdd={addTodo} onCloseModal={closeModal} {modal} {filter} onFilter={setFilter} />
 		</Route>
 		<Route path='/about' component={About} />
 	</Main>
 	<Footer />
 </Router>
-
-<style>
-
-</style>

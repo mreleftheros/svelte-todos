@@ -1,5 +1,5 @@
 <script>
-  export let todos = [];
+  export let todos = [], filter = 'all';
 
   $: doneTodos = todos.filter(t => t.done).length;
 	$: totalTodos = todos.length;
@@ -7,10 +7,12 @@
 </script>
 
 <div class="board-box">
-  {#if !allDone}
-    <p class="board">{doneTodos} out of {totalTodos}</p>
-  {:else}
-    <p class="board">Congrats! All {totalTodos} todos are done!</p>
+  {#if filter === 'all'}
+    {#if !allDone}
+      <p class="board">{doneTodos} out of {totalTodos}</p>
+    {:else}
+      <p class="board">Congrats! All {totalTodos} todos are done!</p>
+    {/if}
   {/if}
 </div>
 
@@ -19,6 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 5rem;
   }
 
   .board {

@@ -1,16 +1,16 @@
 <script>
-  export let todos = [], modal = null, onEditModal, onCloseModal, onAdd, onEdit, onToggle, onDelete;
+  export let todos = [], filter = 'all', modal = null, onEditModal, onCloseModal, onAdd, onEdit, onToggle, onDelete, onFilter;
   import Todos from '../lib/Todos.svelte';
   import Modal from '../lib/Modal.svelte';
   import TodoForm from '../lib/TodoForm.svelte';
   import TodoBoard from '../lib/TodoBoard.svelte';
+  import TodoFilter from '../lib/TodoFilter.svelte';
 </script>
 
 <section>
   <h2 class="title">My Todos</h2>
-  {#if todos.length}
-    <TodoBoard {todos} />
-  {/if}
+  <TodoBoard {todos} {filter} />
+  <TodoFilter {filter} {onFilter} />
   <Todos {todos} {onToggle} {onDelete} {onEditModal} />
   {#if modal}
     <Modal {onCloseModal}>

@@ -16,5 +16,6 @@
     font-size: 2.5rem;
     text-align: center;
     text-shadow: 1px 2px 0 #333;
+    margin-top: 2rem;
   }
 </style>

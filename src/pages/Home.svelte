@@ -8,7 +8,9 @@
 
 <section>
   <h2 class="title">My Todos</h2>
-  <TodoBoard {todos} />
+  {#if todos.length}
+    <TodoBoard {todos} />
+  {/if}
   <Todos {todos} on:check on:edit on:trash />
   {#if show}
     <Modal on:close>

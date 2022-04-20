@@ -10,7 +10,7 @@
   {#if !allDone}
     <p class="board">{doneTodos} out of {totalTodos}</p>
   {:else}
-    <p class="board">Congrats! All of {totalTodos} are completed!</p>
+    <p class="board">Congrats! All {totalTodos} todos are completed!</p>
   {/if}
 </div>
 

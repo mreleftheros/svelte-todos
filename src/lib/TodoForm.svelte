@@ -58,15 +58,18 @@
     text-align: center;
     user-select: none;
     letter-spacing: .1rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 100;
     flex-basis: 5rem;
+    padding: 1rem;
+    margin: 1rem 0;
   }
 
   .label {
     display: block;
-    font-size: 3rem;
-    font-weight: 900;
+    font-size: 2.5rem;
+    font-weight: 700;
+    padding-left: .5rem;
   }
 
   .input {
@@ -96,6 +99,10 @@
     font-size: 2rem;
     cursor: pointer;
     transition: transform .15s ease;
+  }
+
+  .btn:disabled {
+    background-color: rgb(122, 82, 90)
   }
 
   .btn:hover {

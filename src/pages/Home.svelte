@@ -1,5 +1,5 @@
 <script>
-  export let todos = [], filter = 'all', modal = null, onEditModal, onCloseModal, onAdd, onEdit, onToggle, onDelete, onFilter, doneTodos, totalTodos, allDone, someDone, onDeleteDone, onToggleAll;
+  export let todos = [], filter = 'all', modal = null, onEditModal, onCloseModal, onAdd, onEdit, onToggle, onDelete, onFilter, doneTodos, totalTodos, allDone, someDone, onDeleteDone, onToggleAll, todosExist;
   import Todos from '../lib/Todos.svelte';
   import Modal from '../lib/Modal.svelte';
   import TodoForm from '../lib/TodoForm.svelte';
@@ -13,7 +13,7 @@
   <TodoBoard {todos} {filter} {doneTodos} {totalTodos} {allDone} />
   <TodoFilter {filter} {onFilter} />
   <Todos {todos} {onToggle} {onDelete} {onEditModal} />
-  <TodoActions {allDone} {someDone} {onDeleteDone} {onToggleAll} />
+  <TodoActions {allDone} {someDone} {onDeleteDone} {onToggleAll} {todosExist} />
   {#if modal}
     <Modal {onCloseModal}>
       <TodoForm {...modal} {onAdd} {onEdit} />

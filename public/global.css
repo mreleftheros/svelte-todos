@@ -19,7 +19,11 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   box-sizing: border-box;
   min-height: 100vh;
-  background: linear-gradient(to top left, rgb(194, 117, 130), rgb(116, 26, 44));
+  background: linear-gradient(
+    to top left,
+    rgb(194, 117, 130),
+    rgb(116, 26, 44)
+  );
   font-size: 1.6rem;
 }
 

@@ -17,6 +17,7 @@
 	$: totalTodos = todos.length;
   $: allDone = doneTodos === totalTodos;
 	$: someDone = todos.some(t => t.done);
+	$: todosExist = todos.length > 0;
 
 	const openAddModal = () => modal = {type: 'add'};
 
@@ -57,7 +58,7 @@
 	<Header onAddModal={openAddModal} />
 	<Main>
 		<Route path='/'>
-			<Home todos={filteredTodos || todos} onToggle={toggleDone} onEditModal={openEditModal} onEdit={editTodo} onDelete={deleteTodo} onAdd={addTodo} onCloseModal={closeModal} {modal} {filter} onFilter={setFilter} {doneTodos} {totalTodos} {allDone} {someDone} onDeleteDone={deleteDone} onToggleAll={toggleAll} />
+			<Home todos={filteredTodos || todos} onToggle={toggleDone} onEditModal={openEditModal} onEdit={editTodo} onDelete={deleteTodo} onAdd={addTodo} onCloseModal={closeModal} {modal} {filter} onFilter={setFilter} {doneTodos} {totalTodos} {allDone} {someDone} onDeleteDone={deleteDone} onToggleAll={toggleAll} {todosExist} />
 		</Route>
 		<Route path='/about' component={About} />
 	</Main>

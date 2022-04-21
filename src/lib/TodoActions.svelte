@@ -1,9 +1,9 @@
 <script>
-  export let allDone = false, someDone = false, onDeleteDone, onToggleAll;
+  export let allDone = false, someDone = false, onDeleteDone, onToggleAll, todosExist;
 </script>
 
 <div class="box">
-  <button class="btn" on:click={onToggleAll}>
+  <button disabled={!todosExist} class="btn" on:click={onToggleAll}>
     {#if allDone}
       Uncheck All
     {:else}
@@ -28,7 +28,8 @@
   .btn {
     background-color: dodgerblue;
     border: none;
-    padding: .5rem 1.5rem;
+    min-width: 20rem;
+    padding: 1rem 1.5rem;
     border-radius: 1rem;
     color: #fff;
     font-size: 1.8rem;
@@ -38,7 +39,7 @@
   }
 
   .btn:disabled {
-    background-color: rgb(169, 212, 255);
+    background-color: rgb(132, 191, 250);
   }
 
   .btn:not(:disabled):hover {

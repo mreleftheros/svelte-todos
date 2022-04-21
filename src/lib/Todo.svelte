@@ -1,5 +1,6 @@
 <script>
   export let id, text, done, onToggle, onDelete, onEditModal;
+  import {slide, scale} from 'svelte/transition';
 
   const icons = {
     check: '🗸',
@@ -21,7 +22,7 @@
   };
 </script>
 
-<li class="item">
+<li class="item" in:scale out:slide>
   <div class="todo">
     <span class="logo">&#127919;</span>
     <h3 class="text" class:line={done}>{text}</h3>

@@ -1,9 +1,5 @@
 <script>
-  export let todos = [], filter = 'all';
-
-  $: doneTodos = todos.filter(t => t.done).length;
-	$: totalTodos = todos.length;
-  $: allDone = doneTodos === totalTodos;
+  export let todos = [], filter = 'all', doneTodos, totalTodos, allDone;
 </script>
 
 <div class="board-box">

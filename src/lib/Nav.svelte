@@ -34,9 +34,10 @@
     letter-spacing: .1rem;
     transition: transform .15s ease-in-out;
     text-shadow: 2px 2px #333;
+    transform: translateY(.5rem);
   }
 
   .logo-title:hover {
-    transform: scale(0.95);
+    transform: scale(0.99);
   }
 </style>

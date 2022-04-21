@@ -23,7 +23,7 @@
   .wrapper {
     display: flex;
     justify-content: center;
-    margin: 1rem 0;
+    margin: 2rem 0;
   }
 
   .box {
@@ -31,7 +31,7 @@
     position: relative;
     width: 15rem;
     padding: 1rem;
-    background-color: rgba(3, 3, 3, 1);
+    background-color: orange;
     opacity: .5;
     border-radius: 1rem;
     cursor: pointer;
@@ -47,7 +47,10 @@
     display: block;
     text-align: center;
     font-size: 2rem;
+    text-shadow: 1px 1px 0 #111;
+    font-weight: bold;
     user-select: none;
+    letter-spacing: .1rem;
   }
 
   .active {

@@ -1,17 +1,19 @@
 <script>
-  export let todos = [], filter = 'all', modal = null, onEditModal, onCloseModal, onAdd, onEdit, onToggle, onDelete, onFilter;
+  export let todos = [], filter = 'all', modal = null, onEditModal, onCloseModal, onAdd, onEdit, onToggle, onDelete, onFilter, doneTodos, totalTodos, allDone, someDone, onDeleteDone, onToggleAll;
   import Todos from '../lib/Todos.svelte';
   import Modal from '../lib/Modal.svelte';
   import TodoForm from '../lib/TodoForm.svelte';
   import TodoBoard from '../lib/TodoBoard.svelte';
   import TodoFilter from '../lib/TodoFilter.svelte';
+  import TodoActions from '../lib/TodoActions.svelte';
 </script>
 
 <section>
   <h2 class="title">My Todos</h2>
-  <TodoBoard {todos} {filter} />
+  <TodoBoard {todos} {filter} {doneTodos} {totalTodos} {allDone} />
   <TodoFilter {filter} {onFilter} />
   <Todos {todos} {onToggle} {onDelete} {onEditModal} />
+  <TodoActions {allDone} {someDone} {onDeleteDone} {onToggleAll} />
   {#if modal}
     <Modal {onCloseModal}>
       <TodoForm {...modal} {onAdd} {onEdit} />

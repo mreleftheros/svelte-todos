@@ -13,6 +13,10 @@
 	$: id = todos.length > 0 ? Math.max(...todos.map(t => t.id)) + 1 : 0;
 	$: setTodosToStorage(todos);
 	$: filteredTodos = filter === 'done' ? todos.filter(t => t.done) : filter === 'undone' ? todos.filter(t => !t.done) : null;
+	$: doneTodos = todos.filter(t => t.done).length;
+	$: totalTodos = todos.length;
+  $: allDone = doneTodos === totalTodos;
+	$: someDone = todos.some(t => t.done);
 
 	const openAddModal = () => modal = {type: 'add'};
 
@@ -43,13 +47,17 @@
 	const deleteTodo = (id) => todos = todos.filter(t => t.id !== id);
 
 	const setFilter = newFilter => filter = newFilter;
+
+	const deleteDone = () => todos = todos.filter(t => !t.done);
+
+	const toggleAll = () => todos = allDone ? todos.map(t => ({...t, done: false})) : todos.map(t => ({...t, done: true})); 
 </script>
 
 <Router>
 	<Header onAddModal={openAddModal} />
 	<Main>
 		<Route path='/'>
-			<Home todos={filteredTodos || todos} onToggle={toggleDone} onEditModal={openEditModal} onEdit={editTodo} onDelete={deleteTodo} onAdd={addTodo} onCloseModal={closeModal} {modal} {filter} onFilter={setFilter} />
+			<Home todos={filteredTodos || todos} onToggle={toggleDone} onEditModal={openEditModal} onEdit={editTodo} onDelete={deleteTodo} onAdd={addTodo} onCloseModal={closeModal} {modal} {filter} onFilter={setFilter} {doneTodos} {totalTodos} {allDone} {someDone} onDeleteDone={deleteDone} onToggleAll={toggleAll} />
 		</Route>
 		<Route path='/about' component={About} />
 	</Main>
